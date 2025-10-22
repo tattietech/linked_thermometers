@@ -1,4 +1,4 @@
-# Linked Thermometers
+# Linked Thermometers - In Progress
 
 A smart linked thermometer system using ESP32 and DHT22 sensors to monitor temperature and humidity data.
 
