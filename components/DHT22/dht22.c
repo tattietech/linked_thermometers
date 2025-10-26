@@ -28,7 +28,8 @@ void get_data()
     // switch to input to read sensor response
     gpio_set_direction(DHT_GPIO, GPIO_MODE_INPUT);
 
-    // wait for sensor response (low then high)
+    // wait for sensor response (low then high).
+    // timeout is to prevent a hang in the event that the sensor does not respond
     uint32_t timeout = 10000;
     while (gpio_get_level(DHT_GPIO) == 1 && timeout--) ets_delay_us(1);
     timeout = 10000;
@@ -47,7 +48,8 @@ void get_data()
         
         // measure length of high pulse
         uint32_t high_ticks = 0;
-        
+       
+        // 200 is a fail safe limit, loop should exit before then
         while (gpio_get_level(DHT_GPIO) == 1 && high_ticks < 200)
         {
             ets_delay_us(1);
