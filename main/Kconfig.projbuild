@@ -14,7 +14,8 @@ menu "Server Configuration"
 config API_KEY
     string "API Key"
     default ""
-    help
-        Paste API key here
+config API_ENDPOINT
+        string "API ENDPOINT"
+        default ""
 
 endmenu

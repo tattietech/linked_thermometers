@@ -17,10 +17,10 @@ void get_data()
 {
     gpio_set_direction(DHT_GPIO, GPIO_MODE_OUTPUT);
     // start signal, pull low for 2ms, it only needs one
-    // but we'll do 2 to be safe
+    // but we'll do 1.2 to be safe
 
     gpio_set_level(DHT_GPIO, 0);
-    ets_delay_us(3000);
+    ets_delay_us(1200);
 
     gpio_set_level(DHT_GPIO, 1);
     ets_delay_us(25);
@@ -61,9 +61,6 @@ void get_data()
         // store the bit in the correct byte
         data[i / 8] <<= 1;  // shift current byte left
         data[i / 8] |= bit; // OR in the new bit
-
-        //printf("%lu ", high_ticks);
-       //printf("%d", (high_ticks > 40) ? 1 : 0);
     }
     
     humidity = data[0] * 256 + data[1];

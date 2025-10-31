@@ -3,11 +3,8 @@
 #define MAX_HTTP_OUTPUT_BUFFER 4096
 static const char *TAG = "HTTP_CLIENT";
 
-#define API_KEY      CONFIG_API_KEY
-
-#ifndef MIN
-#define MIN(a,b) ((a) < (b) ? (a) : (b))
-#endif
+#define API_KEY CONFIG_API_KEY
+#define API_ENDPOINT CONFIG_API_ENDPOINT
 
 extern const char cert_pem_start[] asm("_binary_cert_pem_start");
 extern const char cert_pem_end[]   asm("_binary_cert_pem_end");
@@ -17,7 +14,7 @@ esp_err_t _http_event_handler(esp_http_client_event_t *evt);
 void send_post(char *body)
 {
         esp_http_client_config_t config = {
-        .host = "linked-thermometer-api-dfc7cagkhch7h5d8.uksouth-01.azurewebsites.net",
+        .host = API_ENDPOINT,
         .path = "/readings",
         .transport_type = HTTP_TRANSPORT_OVER_SSL,
         .cert_pem = cert_pem_start,
