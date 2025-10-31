@@ -68,12 +68,7 @@ void wifi_init_sta(void)
     wifi_config_t wifi_config = {
         .sta = {
             .ssid = ESP_WIFI_SSID,
-            .password = ESP_WIFI_PASS,
-            /* Authmode threshold resets to WPA2 as default if password matches WPA2 standards (password len => 8).
-             * If you want to connect the device to deprecated WEP/WPA networks, Please set the threshold value
-             * to WIFI_AUTH_WEP/WIFI_AUTH_WPA_PSK and set the password with length and format matching to
-             * WIFI_AUTH_WEP/WIFI_AUTH_WPA_PSK standards.
-             */
+            .password = ESP_WIFI_PASS
         },
     };
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA) );
@@ -93,11 +88,11 @@ void wifi_init_sta(void)
     /* xEventGroupWaitBits() returns the bits before the call returned, hence we can test which event actually
      * happened. */
     if (bits & WIFI_CONNECTED_BIT) {
-        ESP_LOGI(TAG, "connected to ap SSID:%s password:%s",
-                 ESP_WIFI_SSID, ESP_WIFI_PASS);
+        ESP_LOGI(TAG, "connected to ap SSID:%s",
+                 ESP_WIFI_SSID);
     } else if (bits & WIFI_FAIL_BIT) {
-        ESP_LOGI(TAG, "Failed to connect to SSID:%s, password:%s",
-                 ESP_WIFI_SSID, ESP_WIFI_PASS);
+        ESP_LOGI(TAG, "Failed to connect to SSID:%s",
+                 ESP_WIFI_SSID);
     } else {
         ESP_LOGE(TAG, "UNEXPECTED EVENT");
     }
