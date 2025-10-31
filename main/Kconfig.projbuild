@@ -10,3 +10,11 @@ menu "Wi-Fi Configuration"
         default "MYPassword"
 
 endmenu
+menu "Server Configuration"
+config API_KEY
+    string "API Key"
+    default ""
+    help
+        Paste API key here
+
+endmenu

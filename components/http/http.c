@@ -12,15 +12,6 @@ static const uint32_t sleep_time_ms = 5000;
 #define REQUEST_BODY "{\"temperature\": 30}"
 #define USER_AGENT "esp-idf/1.0 esp32"
 
-//HTTP POST request
-// static const char *REQUEST = "POST " WEB_PATH " HTTP/1.0\r\n"
-//     "Host: " WEB_HOST ":" WEB_PORT "\r\n"
-//     "User-Agent: esp-idf/1.0 esp32\r\n"
-//     "Content-Type: " CONTENT_TYPE "\r\n"
-//     "Content-Length: 19\r\n"
-//     "\r\n"
-//     REQUEST_BODY
-;
 
 //Set timeouts
 #define CONNECTION_TIMEOUT_SEC 10 // Set delay to wait for connection (sec)
