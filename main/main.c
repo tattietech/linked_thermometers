@@ -1,6 +1,7 @@
 #include "dht22.h"
 #include "esp_err.h"
 #include "esp_event.h"
+#include "freertos/idf_additions.h"
 #include "portmacro.h"
 #include "wifi.h"
 #include "http_client.h"
@@ -34,10 +35,14 @@ void app_main(void)
 
     while (1)
     {
-        get_data();
+        if(!get_data()) {
+            vTaskDelay(5000 / portTICK_PERIOD_MS);
+            continue;
+        }
+
         float t = get_temperature();
         float h = get_humidity();
-        
+
         // Don't need to post the data again if it hasn't changed
         if (t != last_t || h != last_h) {
             char post_data[256];
